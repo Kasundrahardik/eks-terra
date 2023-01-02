@@ -211,6 +211,7 @@ data "aws_iam_policy_document" "queue" {
 }
 
 resource "aws_sqs_queue_policy" "this" {
+  # oak9: aws_sqs_queue_policy.policy is not defined
   count = local.enable_spot_termination ? 1 : 0
 
   queue_url = aws_sqs_queue.this[0].url
