@@ -187,6 +187,7 @@ resource "aws_sqs_queue" "this" {
   sqs_managed_sse_enabled           = var.queue_managed_sse_enabled
   kms_master_key_id                 = var.queue_kms_master_key_id
   kms_data_key_reuse_period_seconds = var.queue_kms_data_key_reuse_period_seconds
+  # oak9: aws_sqs_queue.kms_data_key_reuse_period_seconds is not configured
 
   tags = var.tags
 }
@@ -211,6 +212,7 @@ data "aws_iam_policy_document" "queue" {
 }
 
 resource "aws_sqs_queue_policy" "this" {
+  # oak9: aws_sqs_queue_policy.policy is not defined
   count = local.enable_spot_termination ? 1 : 0
 
   queue_url = aws_sqs_queue.this[0].url
